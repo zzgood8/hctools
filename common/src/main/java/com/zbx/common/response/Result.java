@@ -1,7 +1,6 @@
 package com.zbx.common.response;
 
 import com.zbx.common.exception.BaseException;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -30,6 +29,14 @@ public class Result<T> {
 
     public static <T> Result<T> failed(T data) {
         return new Result<>(Status.FAILED.getCode(),Status.FAILED.getMsg(), data);
+    }
+
+    public static Result<String> ofException(BaseException baseException) {
+        return new Result<>(baseException.getCode(),baseException.getMsg(),null);
+    }
+
+    public static <T> Result<T> ofException(BaseException baseException, T data) {
+        return new Result<>(baseException.getCode(),baseException.getMsg(), data);
     }
 
 }
