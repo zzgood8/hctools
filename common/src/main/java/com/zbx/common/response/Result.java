@@ -1,5 +1,6 @@
 package com.zbx.common.response;
 
+import com.zbx.common.exception.BaseException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -9,13 +10,26 @@ import lombok.Data;
  * @描述
  **/
 @Data
-@AllArgsConstructor
 public class Result<T> {
 
-    private String code;
+    private int code;
 
     private String msg;
 
     private T data;
+
+    private Result(int code, String msg, T data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
+
+    public static <T> Result<T> success(T data) {
+        return new Result<>(Status.SUCCESS.getCode(), Status.SUCCESS.getMsg(), data);
+    }
+
+    public static <T> Result<T> failed(T data) {
+        return new Result<>(Status.FAILED.getCode(),Status.FAILED.getMsg(), data);
+    }
 
 }
