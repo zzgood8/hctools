@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zbx.auth.mapper.UserMapper">
+
+    <sql id="Role_Field">
+        ro.id, ro.name, ro.create_by, ro.create_time, ro.update_by, ro.update_time, ro.deteled
+    </sql>
+
+    <sql id="Permission_Field">
+        pe.id, pe.name, pe.create_by, pe.create_time, pe.update_by, pe.update_time, pe.deteled
+    </sql>
+
+    <select id="selectRoleByUserId" resultType="com.zbx.auth.entity.Role">
+        select
+            <include refid="Role_Field" />
+        from
+            user_role ur
+            left join `role` ro on ur.role_id = ro.id and ro.deleted != 1
+        where
+            ur.user_id = #{userId}
+    </select>
+
+    <select id="selectPermissionByUserId" resultType="com.zbx.auth.entity.Permission">
+        select
+            <include refid="Permission_Field" />
+        from
+            user_role ur
+            left join `role` ro on ur.role_id = ro.id and ro.deleted != 1
+            left join role_permission rp on ro.id = rp.role_id
+            left join permission pe on rp.permission_id = pe.id and pe.deleted != 1
+        where
+            ur.user_id = #{userId}
+    </select>
+
+</mapper>
