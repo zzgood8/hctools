@@ -17,7 +17,7 @@ import java.util.Collections;
 public class MyBatisGenerator {
 
     private static final DataSourceConfig.Builder DATA_SOURCE_CONFIG = new DataSourceConfig
-            .Builder("jdbc:mysql://42.193.218.79:13658/hctools?serverTimezone=Asia/Shanghai&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8", "root", "Zbx.33578");
+            .Builder("jdbc:mysql://42.193.218.79:13658/hctools?serverTimezone=Asia/Shanghai&useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8", "ENC(7jn6lUeSJSrUJ35F1/FB+Q==)", "ENC(th8n8WbsZmoTo5Y3TicwfG37ryEenAyv)");
 
     public static void main(String[] args) {
         FastAutoGenerator.create(DATA_SOURCE_CONFIG)

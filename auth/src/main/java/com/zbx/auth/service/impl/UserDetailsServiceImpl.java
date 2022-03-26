@@ -32,8 +32,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        System.out.println(username);
-
         // 获取用户基本信息
         User user = userService.getUserByUsername(username);
         if (Objects.isNull(user)) {
