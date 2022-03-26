@@ -3,11 +3,11 @@
 <mapper namespace="com.zbx.auth.mapper.UserMapper">
 
     <sql id="Role_Field">
-        ro.id, ro.name, ro.create_by, ro.create_time, ro.update_by, ro.update_time, ro.deteled
+        ro.id, ro.name, ro.create_by, ro.create_time, ro.update_by, ro.update_time, ro.deleted
     </sql>
 
     <sql id="Permission_Field">
-        pe.id, pe.name, pe.create_by, pe.create_time, pe.update_by, pe.update_time, pe.deteled
+        pe.id, pe.name, pe.create_by, pe.create_time, pe.update_by, pe.update_time, pe.deleted
     </sql>
 
     <select id="selectRoleByUserId" resultType="com.zbx.auth.entity.Role">

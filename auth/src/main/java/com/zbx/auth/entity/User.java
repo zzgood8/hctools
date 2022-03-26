@@ -78,7 +78,7 @@ public class User implements Serializable {
     /**
      * 逻辑删除
      */
-    @TableField("deteled")
-    private Boolean deteled;
+    @TableField("deleted")
+    private Boolean deleted;
 
 }

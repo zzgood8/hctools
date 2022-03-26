@@ -13,7 +13,5 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 @Configuration
 public class WebSecurityConfig {
 
-    public UserDetailsService userDetailsService() {
-        return new JdbcUserDetailsManager();
-    }
+
 }

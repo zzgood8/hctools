@@ -32,6 +32,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+        System.out.println(username);
+
         // 获取用户基本信息
         User user = userService.getUserByUsername(username);
         if (Objects.isNull(user)) {
@@ -43,16 +45,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         // 获取用户角色
         List<Role> roles = userService.getRoleListByUserId(user.getId());
-        if (roles.size() != 0) {
+        if (roles != null && roles.size() != 0) {
             List<String> list = roles.stream().map(Role::getName).collect(Collectors.toList());
             builder.roles(list.toArray(new String[roles.size()]));
         }
 
         // 获取角色权限
         List<Permission> permissions = userService.getPermissionListByUserId(user.getId());
-        if (permissions.size() != 0) {
+        if (permissions != null && permissions.size() != 0) {
             List<String> list = permissions.stream().map(Permission::getName).collect(Collectors.toList());
-            builder.roles(list.toArray(new String[roles.size()]));
+            builder.authorities(list.toArray(new String[permissions.size()]));
         }
 
         // 生成用户认证信息
